@@ -13,6 +13,7 @@
       <ul>
         <li>{`{{filename}}`} - IMG_123</li>
         <li>{`{{ext}}`} - jpg</li>
+        <li>{`{{ext}}`} - jpg (forced lowercase)</li>
       </ul>
     </div>
 
