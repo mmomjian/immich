@@ -301,6 +301,7 @@ export class StorageTemplateService extends BaseService {
     const substitutions: Record<string, string> = {
       filename,
       ext: extension,
+      ext: extension.toLowerCase(),
       filetype: asset.type == AssetType.IMAGE ? 'IMG' : 'VID',
       filetypefull: asset.type == AssetType.IMAGE ? 'IMAGE' : 'VIDEO',
       assetId: asset.id,
