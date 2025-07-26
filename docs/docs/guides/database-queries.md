@@ -96,6 +96,20 @@ SELECT "user"."email", "asset"."type", COUNT(1) FROM "asset"
   GROUP BY "asset"."type", "user"."email" ORDER BY "user"."email";
 ```
 
+```sql title="Count by tag"
+SELECT "t"."value" AS "tag_name", COUNT(1) AS "number_assets" FROM "tag" "t"
+  JOIN "tag_asset" "ta" ON "t"."id" = "ta"."tagsId" JOIN "asset" "a" ON "ta"."assetsId" = "a"."id"
+  WHERE "a"."visibility" != 'hidden'
+  GROUP BY "t"."value" ORDER BY "number_assets" DESC;
+```
+
+```sql title="Count by tag (per user)"
+SELECT "t"."value" AS "tag_name", "u"."email" as "user_email", COUNT(1) AS "number_assets" FROM "tag" "t"
+  JOIN "tag_asset" "ta" ON "t"."id" = "ta"."tagsId" JOIN "asset" "a" ON "ta"."assetsId" = "a"."id" JOIN "user" "u" ON "a"."ownerId" = "u"."id"
+  WHERE "a"."visibility" != 'hidden'
+  GROUP BY "t"."value", "u"."email" ORDER BY "number_assets" DESC;
+```
+
 ```sql title="Failed file movements"
 SELECT * FROM "move_history";
 ```
